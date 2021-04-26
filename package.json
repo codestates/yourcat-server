@@ -1,0 +1,24 @@
+{
+  "name": "yourcat-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codestates/YourCat-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codestates/YourCat-server/issues"
+  },
+  "homepage": "https://github.com/codestates/YourCat-server#readme",
+  "devDependencies": {
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0"
+  }
+}
