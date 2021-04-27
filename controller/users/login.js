@@ -1,3 +1,5 @@
-module.exports = (req, res) => {
-  res.json({ message: 'users login' });
+// const User = require('../../models/User');
+
+module.exports = async (req, res) => {
+  res.json({ message: 'success signup' });
 };

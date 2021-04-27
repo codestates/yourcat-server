@@ -70,4 +70,11 @@ router.delete('/deleteBookmark', async (req, res) => {
     .json({ message: 'success delete bookmark', Bookmark: user.bookmark });
 });
 
+router.get('/or', async (req, res) => {
+  const user = await User.find()
+    .or([{ email: 'dd' }, { nickname: 'dd' }])
+    .lean();
+  res.json({ user });
+});
+
 module.exports = router;
