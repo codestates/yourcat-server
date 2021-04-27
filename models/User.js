@@ -1,7 +1,6 @@
-'use strict';
 const mongoose = require('mongoose');
 
-//TODO:minlength, maxlength 같은 옵션은 나중에. 테스트 번거로우니까!
+// TODO:minlength, maxlength 같은 옵션은 나중에. 테스트 번거로우니까!
 const userSchema = new mongoose.Schema(
   {
     email: {
@@ -30,9 +29,9 @@ const userSchema = new mongoose.Schema(
       },
     ],
     catInfo: {
-      name: { type: String, required: true, trim: true },
-      age: { type: String, required: true, trim: true },
-      gender: { type: String, required: true, trim: true },
+      name: { type: String, trim: true },
+      age: { type: String, trim: true },
+      gender: { type: String, trim: true },
       image: { type: String },
     },
   },

@@ -1,7 +1,6 @@
-'use strict';
 const mongoose = require('mongoose');
 
-//FIXME:카테고리를 0,1,2,3 숫자로 분류하는게 편할지도????
+// FIXME:카테고리를 0,1,2,3 숫자로 분류하는게 편할지도????
 const contentSchema = new mongoose.Schema(
   {
     userId: {
