@@ -55,4 +55,19 @@ router.patch('/addBookMark', async (req, res) => {
     .json({ message: 'success add bookmark!', Bookmark: user.bookmark });
 });
 
+// 북마크 제거 (하트눌러있는데 또누르면!!)
+// $pull 연산자와는 달리 $pullAll은 조건이 아니라 그냥 일치하는 값을 배열에서 꺼냅니다.
+// { $pullAll: { 필드: [값1, 값2, ...] } }
+
+router.delete('/deleteBookmark', async (req, res) => {
+  const user = await User.findOne({ _id: '6087e6fb8475ed685bd8d976' });
+  const { contentId } = req.body;
+  await user.update({
+    $pullAll: { bookmark: [{ contentId }] },
+  });
+  res
+    .status(200)
+    .json({ message: 'success delete bookmark', Bookmark: user.bookmark });
+});
+
 module.exports = router;
