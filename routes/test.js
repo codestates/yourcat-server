@@ -41,4 +41,18 @@ router.post('/createContent', async (req, res) => {
   res.status(200).json({ message: 'success create content' });
 });
 
+// 유저정보에 북마크 추가 (하트누를때, accessToken과 contentId받야와야함)
+// PATCH /test/addBookMark
+router.patch('/addBookMark', async (req, res) => {
+  /* const token = req.headers.authorization.split(" ")[1];
+			const decoded = jwt_decode(token);
+			const user = await usersModel.findOne({ _id: decoded._id }); */
+  const user = await User.findOne({ _id: '6087e6fb8475ed685bd8d976' });
+  const { contentId } = req.body;
+  await user.update({ $push: { bookmark: { contentId } } });
+  res
+    .status(200)
+    .json({ message: 'success add bookmark!', Bookmark: user.bookmark });
+});
+
 module.exports = router;
