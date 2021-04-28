@@ -8,7 +8,11 @@ const tokenToUserInfo = require('../middlewares/tokenToUserInfo');
 router.post('/signup', controller.signup);
 // * POST /users/login
 router.post('/login', controller.login);
+// * GET /users/userinfo
 router.get('/userinfo', tokenToUserInfo, controller.userInfo);
-router.patch('/useredit', controller.userEdit);
+// * PATCH /users/useredit
+router.patch('/useredit', tokenToUserInfo, controller.userEdit);
+// * DELETE /users/withdrawal
+router.delete('/withdrawal', tokenToUserInfo, controller.withdrawal);
 
 module.exports = router;
