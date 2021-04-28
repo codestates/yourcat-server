@@ -4,7 +4,7 @@ const User = require('../../models/User');
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;
-  const userInfo = await User.findOne({ email }).lean();
+  const userInfo = await User.findOne({ email });
 
   // 0. 이메일 유효성 검사
   if (!validator.isEmail(email)) {
