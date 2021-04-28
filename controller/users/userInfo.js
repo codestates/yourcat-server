@@ -5,14 +5,14 @@ module.exports = async (req, res) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    return res.status(400).json({ message: '토큰이 존재하지 않습니다.' });
+    res.status(400).json({ message: '토큰이 존재하지 않습니다.' });
+    return;
   }
 
   const bearer = authorization.split(' ')[0];
   if (bearer !== 'Bearer') {
-    return res
-      .status(400)
-      .json({ message: 'Bearer 키워드가 존재하지 않습니다.' });
+    res.status(400).json({ message: 'Bearer 키워드가 존재하지 않습니다.' });
+    return;
   }
 
   try {
