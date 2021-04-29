@@ -3,4 +3,5 @@ module.exports = {
   category: require('./category'),
   detail: require('./detail'),
   contentDelete: require('./contentDelete'),
+  contentEdit: require('./contentEdit'),
 };
