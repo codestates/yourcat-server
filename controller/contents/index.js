@@ -1,5 +1,4 @@
-const post = require('./post');
-
 module.exports = {
-  post,
+  create: require('./create'),
+  category: require('./category'),
 };
