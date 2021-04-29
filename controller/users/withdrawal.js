@@ -4,7 +4,7 @@ const User = require('../../models/User');
 module.exports = async (req, res) => {
   try {
     const { _id } = req.user;
-    await User.remove({ _id });
+    await User.deleteOne({ _id });
     res.status(200).json({ message: '회원탈퇴가 정상적으로 처리되었습니다.' });
   } catch (err) {
     res.status(500).json({ message: '서버문제로 회원탈퇴에 실패했습니다.' });

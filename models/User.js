@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
     ],
     catInfo: {
       name: { type: String, trim: true },
-      age: { type: String, trim: true },
+      age: { type: Number, trim: true },
       gender: { type: String, trim: true },
       image: { type: String },
     },
