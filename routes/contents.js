@@ -7,6 +7,8 @@ const tokenToUserInfo = require('../middlewares/tokenToUserInfo');
 // * POST /contents/create
 router.post('/create', tokenToUserInfo, controller.create);
 // * POST /contents/community/:category
-router.post('/community/:category', controller.category);
+router.post('/:category', controller.category);
+// * GET /detail/:contentId
+router.get('/detail/:contentId', controller.detail);
 
 module.exports = router;
