@@ -6,9 +6,15 @@ const tokenToUserInfo = require('../middlewares/tokenToUserInfo');
 
 // * POST /contents/create
 router.post('/create', tokenToUserInfo, controller.create);
-// * POST /contents/community/:category
+// * POST /contents/:category
 router.post('/:category', controller.category);
 // * GET /detail/:contentId
 router.get('/detail/:contentId', controller.detail);
+// * DELETE /delete/:contentId
+router.delete('/delete/:contentId', tokenToUserInfo, controller.contentDelete);
+// 글수정
+// 댓글달기
+// 댓글삭제
+// 좋아요 클릭 -> 글의 하트와 유저의 북마크에 모두업데이트 되어야한다.
 
 module.exports = router;
