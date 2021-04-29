@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
       });
       // 4. 더이상 불러올글이 없을때 더보기버튼을 없애기 위해서, 글목록의 길이도 res에 담아 보내준다.
       const contentsLength = contentsList.length;
-      res.json({
+      res.status(200).json({
         contentsList,
         contentsLength,
         message: '해당 카테고리의 게시글을 불러오는데 성공했습니다.',

@@ -9,13 +9,15 @@ module.exports = async (req, res) => {
     const userIdFromContent = contentInfo.userId;
 
     // 2. 이 _id와 contentId의 글의 userId가 일치하는지 확인하고 삭제한다.
-    if (String(userIdFromToken) === String(userIdFromContent)) {
+    if (userIdFromToken.equals(userIdFromContent)) {
       await Content.deleteOne({ _id: contentId });
-      res.json({ message: '게시글이 삭제되었습니다.' });
+      res.status(200).json({ message: '게시글이 삭제되었습니다.' });
 
       // 2.1 일치하지않으면 삭제 권한이 없다는 메시지를 보낸다.
     } else {
-      res.json({ message: '글의 작성자만 게시글을 삭제할 수 있습니다.' });
+      res
+        .status(401)
+        .json({ message: '글의 작성자만 게시글을 삭제할 수 있습니다.' });
     }
   } catch (err) {
     res

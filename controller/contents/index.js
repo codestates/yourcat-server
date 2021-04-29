@@ -5,4 +5,5 @@ module.exports = {
   contentDelete: require('./contentDelete'),
   contentEdit: require('./contentEdit'),
   commentAdd: require('./commentAdd'),
+  commentDelete: require('./commentDelete'),
 };

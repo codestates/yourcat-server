@@ -24,7 +24,9 @@ module.exports = async (req, res) => {
 
       // 2.1 일치하지않으면 삭제 권한이 없다는 메시지를 보낸다.
     } else {
-      res.json({ message: '글의 작성자만 게시글을 수정할 수 있습니다.' });
+      res
+        .status(401)
+        .json({ message: '글의 작성자만 게시글을 수정할 수 있습니다.' });
     }
   } catch (err) {
     res
