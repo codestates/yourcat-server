@@ -19,6 +19,11 @@ module.exports = async (req, res) => {
         .limit(limit)
         .lean();
 
+      contentsList.forEach(content => {
+        content.contentId = content._id;
+        delete content._id;
+      });
+
       const contentsLength = contentsList.length;
       res.json({
         contentsList,

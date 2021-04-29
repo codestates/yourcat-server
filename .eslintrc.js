@@ -4,5 +4,7 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
     'global-require': 0,
+    'no-param-reassign': 0,
+    'no-underscore-dangle': 0,
   },
 };
