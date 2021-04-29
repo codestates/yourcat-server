@@ -4,4 +4,5 @@ module.exports = {
   detail: require('./detail'),
   contentDelete: require('./contentDelete'),
   contentEdit: require('./contentEdit'),
+  commentAdd: require('./commentAdd'),
 };

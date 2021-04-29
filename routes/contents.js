@@ -14,7 +14,8 @@ router.get('/detail/:contentId', controller.detail);
 router.delete('/delete/:contentId', tokenToUserInfo, controller.contentDelete);
 // * PATCH contents/edit/:contentId
 router.patch('/edit/:contentId', tokenToUserInfo, controller.contentEdit);
-// 댓글달기
+// * PATCH contents/addcomment/:contentId
+router.patch('/addcomment/:contentId', tokenToUserInfo, controller.commentAdd);
 // 댓글삭제
 // 좋아요 클릭 -> 글의 하트와 유저의 북마크에 모두업데이트 되어야한다.
 
