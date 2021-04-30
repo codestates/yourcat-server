@@ -1,4 +1,4 @@
-const upload = require('../../lib/multer');
+const { upload } = require('../../lib/multer');
 
 module.exports = (req, res) => {
   // 가져온 이미지를 uploads폴더에 저장한다.
@@ -10,8 +10,7 @@ module.exports = (req, res) => {
     }
     return res.status(200).json({
       message: '이미지가 업로드되었습니다.',
-      filePath: res.req.file.path,
-      fileName: res.req.file.filename,
+      filePath: req.file.location,
     });
   });
 };
