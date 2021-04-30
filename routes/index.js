@@ -1,9 +1,6 @@
-const usersRouter = require('./users');
-const contentsRouter = require('./contents');
-const testRouter = require('./test');
-
 module.exports = {
-  usersRouter,
-  contentsRouter,
-  testRouter,
+  usersRouter: require('./users'),
+  contentsRouter: require('./contents'),
+  imageRouter: require('./images'),
+  testRouter: require('./test'),
 };
