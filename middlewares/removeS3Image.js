@@ -1,4 +1,4 @@
-const { s3 } = require('../../lib/multer');
+const { s3 } = require('../lib/multer');
 
 module.exports = (req, res) => {
   const { where, imageName } = req.image;

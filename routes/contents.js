@@ -2,8 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const controller = require('../controller/contents');
-const imageController = require('../controller/images');
-
+const removeS3Image = require('../middlewares/removeS3Image');
 const tokenToUserInfo = require('../middlewares/tokenToUserInfo');
 
 // * POST /contents/create
@@ -17,7 +16,7 @@ router.delete(
   '/delete/:contentId',
   tokenToUserInfo,
   controller.contentDelete,
-  imageController.removeS3Image,
+  removeS3Image,
 );
 // * PATCH contents/edit/:contentId
 router.patch('/edit/:contentId', tokenToUserInfo, controller.contentEdit);
