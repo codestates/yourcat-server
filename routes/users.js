@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controller/users');
 const tokenToUserInfo = require('../middlewares/tokenToUserInfo');
-const imageController = require('../controller/images');
+const removeS3Image = require('../middlewares/removeS3Image');
 
 // * POST /users/signup
 router.post('/signup', controller.signup);
@@ -18,7 +18,7 @@ router.delete(
   '/withdrawal',
   tokenToUserInfo,
   controller.withdrawal,
-  imageController.removeS3Image,
+  removeS3Image,
 );
 
 module.exports = router;

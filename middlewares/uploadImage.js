@@ -1,7 +1,6 @@
-const { upload } = require('../../lib/multer');
+const { upload } = require('../lib/multer');
 
 module.exports = (req, res) => {
-  // 가져온 이미지를 uploads폴더에 저장한다.
   upload(req, res, err => {
     if (err) {
       return res

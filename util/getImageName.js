@@ -11,7 +11,6 @@ module.exports = async (idType, id) => {
   if (idType === 'user') {
     const userInfo = await User.findById(id).select('-_id catInfo').lean();
     imageURL = userInfo.catInfo.image;
-    console.log('imageURL : ', imageURL);
 
     // 2. idType이 content인 경우
     // DB.contents collection에 저장된 content의 image에서 S3에 저장된 이름을 return한다.
