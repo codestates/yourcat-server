@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controller/users');
 const tokenToUserInfo = require('../middlewares/tokenToUserInfo');
+const imageController = require('../controller/images');
 
 // * POST /users/signup
 router.post('/signup', controller.signup);
@@ -13,6 +14,11 @@ router.get('/userinfo', tokenToUserInfo, controller.userInfo);
 // * PATCH /users/useredit
 router.patch('/useredit', tokenToUserInfo, controller.userEdit);
 // * DELETE /users/withdrawal
-router.delete('/withdrawal', tokenToUserInfo, controller.withdrawal);
+router.delete(
+  '/withdrawal',
+  tokenToUserInfo,
+  controller.withdrawal,
+  imageController.removeS3Image,
+);
 
 module.exports = router;
