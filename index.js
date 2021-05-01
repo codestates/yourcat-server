@@ -32,15 +32,10 @@ app.use(
   }),
 );
 app.use(cookieParser());
-// 이미지와 같은 정적파일을 제공하기위한 미들웨어 static
-app.use(express.static('uploads'));
 app.use('/users', usersRouter);
 app.use('/contents', contentsRouter);
 app.use('/test', testRouter);
 app.use('/images', imageRouter);
-
-// 이미지와 같은 정적파일을 제공하기위한 미들웨어 static
-app.use(express.static('uploads'));
 
 app.get('/', (req, res) => {
   res.json({ message: '연결되었습니다.' });

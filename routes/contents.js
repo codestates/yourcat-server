@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 const controller = require('../controller/contents');
+const imageController = require('../controller/images');
+
 const tokenToUserInfo = require('../middlewares/tokenToUserInfo');
 
 // * POST /contents/create
@@ -11,7 +13,12 @@ router.post('/:category', controller.category);
 // * GET contents/detail/:contentId
 router.get('/detail/:contentId', controller.detail);
 // * DELETE contents/delete/:contentId
-router.delete('/delete/:contentId', tokenToUserInfo, controller.contentDelete);
+router.delete(
+  '/delete/:contentId',
+  tokenToUserInfo,
+  controller.contentDelete,
+  imageController.removeS3Image,
+);
 // * PATCH contents/edit/:contentId
 router.patch('/edit/:contentId', tokenToUserInfo, controller.contentEdit);
 // * PATCH contents/addcomment/:contentId
