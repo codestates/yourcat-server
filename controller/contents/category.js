@@ -19,6 +19,7 @@ module.exports = async (req, res) => {
 
       const contentsList = await Content.find({ category })
         .populate('userId')
+        .sort('-createdAt')
         .skip(skip)
         .limit(limit)
         .lean();

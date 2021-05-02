@@ -6,4 +6,5 @@ module.exports = {
   contentEdit: require('./contentEdit'),
   commentAdd: require('./commentAdd'),
   commentDelete: require('./commentDelete'),
+  commentEdit: require('./commentEdit'),
 };

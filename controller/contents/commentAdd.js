@@ -19,7 +19,18 @@ module.exports = async (req, res) => {
       populate: { path: 'userId', select: '_id nickname bookmark' },
     });
     const comment = content.comment.slice(-1);
-    res.status(200).json({ message: '댓글이 작성되었습니다.', comment });
+    const {
+      _id: commentId,
+      userId: { nickname },
+      description: uploadedDescription,
+    } = comment[0];
+
+    res.status(200).json({
+      message: '댓글이 작성되었습니다.',
+      commentId,
+      nickname,
+      description: uploadedDescription,
+    });
   } catch (err) {
     res
       .status(500)

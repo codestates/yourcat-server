@@ -22,6 +22,12 @@ router.delete(
 router.patch('/edit/:contentId', tokenToUserInfo, controller.contentEdit);
 // * PATCH contents/addcomment/:contentId
 router.patch('/addcomment/:contentId', tokenToUserInfo, controller.commentAdd);
+// * PATCH contents/editcomment/:contentId
+router.patch(
+  '/editcomment/:contentId',
+  tokenToUserInfo,
+  controller.commentEdit,
+);
 // * DELETE contents/deletecomment/:contentId
 router.delete(
   '/deletecomment/:contentId',
