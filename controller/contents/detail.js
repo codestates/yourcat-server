@@ -1,9 +1,24 @@
+const decode = require('jwt-decode');
 const Content = require('../../models/Content');
+const User = require('../../models/User');
 
 module.exports = async (req, res) => {
   try {
     // 1. GET요청 URL의 :contentId와 일치하는 글을 찾는다.
+    let isBookmark = false;
     const { contentId } = req.params;
+    if (req.headers.authorization) {
+      const token = req.headers.authorization.split(' ')[1];
+      const { userId } = decode(token);
+      const { bookmark } = await User.findById(userId).select('-_id bookmark');
+
+      // 북마크한 글인지 확인
+      const check = bookmark.find(el => el.contentId.equals(contentId));
+      if (check) {
+        isBookmark = true;
+      }
+    }
+
     const content = await Content.findOne({ _id: contentId })
       .populate({
         path: 'userId',
@@ -14,6 +29,7 @@ module.exports = async (req, res) => {
         populate: { path: 'userId', select: '_id nickname catInfo' },
       })
       .lean();
+
     const {
       like,
       title,
@@ -29,14 +45,22 @@ module.exports = async (req, res) => {
       ? content.userId.catInfo.image
       : undefined;
 
-    const comment = content.comment.map(el => {
-      return {
+    // 탈퇴한 회원인지 확인
+    const validContents = content.comment.filter(el => el.userId);
+
+    const comment = validContents.map(el => {
+      const data = {
         commentId: el._id,
-        commentImage: el.userId.catInfo.image,
+        description: el.description,
         commentUserId: el.userId._id,
         commentUserName: el.userId.nickname,
-        description: el.description,
       };
+
+      if (el.userId.catInfo) {
+        data.commentUserImage = el.userId.catInfo.image;
+      }
+
+      return data;
     });
     const contentInfo = {
       contentId: content._id,
@@ -47,6 +71,7 @@ module.exports = async (req, res) => {
       contentImage,
       user: { userId, userName, userImage },
       comment,
+      isBookmark,
       createdAt,
       updatedAt,
     };

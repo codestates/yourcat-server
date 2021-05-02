@@ -1,4 +1,6 @@
+const decode = require('jwt-decode');
 const Content = require('../../models/Content');
+const User = require('../../models/User');
 
 module.exports = async (req, res) => {
   try {
@@ -16,6 +18,15 @@ module.exports = async (req, res) => {
     } else {
       const limit = req.body.limit || 20;
       const skip = req.body.skip || 0;
+      let bookmark = [];
+
+      // 3. 현재 로그인되어있다면, 북마크 목록을 불러온다.
+      if (req.headers.authorization) {
+        const token = req.headers.authorization.split(' ')[1];
+        const { userId } = decode(token);
+        const userInfo = await User.findById(userId).select('-_id bookmark');
+        bookmark = userInfo.bookmark;
+      }
 
       const contents = await Content.find({ category })
         .populate('userId')
@@ -26,7 +37,10 @@ module.exports = async (req, res) => {
 
       // 3. 데이터 정리
 
-      const contentsList = contents.map(el => {
+      // 탈퇴한 회원인지 확인
+      const validContents = contents.filter(el => el.userId);
+
+      const contentsList = validContents.map(el => {
         const {
           _id: contentId,
           title,
@@ -42,6 +56,10 @@ module.exports = async (req, res) => {
           ? el.userId.catInfo.image
           : undefined;
 
+        // 북마크한 글인지 확인
+        const check = bookmark.find(mark => mark.contentId.equals(contentId));
+        const isBookmark = check ? true : false;
+
         const data = {
           contentId,
           title,
@@ -54,6 +72,7 @@ module.exports = async (req, res) => {
             userName,
             userImage,
           },
+          isBookmark,
           createdAt,
           updatedAt,
         };

@@ -34,6 +34,5 @@ router.delete(
   tokenToUserInfo,
   controller.commentDelete,
 );
-// 좋아요 클릭 -> 글의 하트와 유저의 북마크에 모두업데이트 되어야한다.
 
 module.exports = router;
