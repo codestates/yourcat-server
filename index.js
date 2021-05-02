@@ -10,6 +10,7 @@ const {
   contentsRouter,
   testRouter,
   imageRouter,
+  bookmarkRouter,
 } = require('./routes');
 
 mongoose
@@ -36,6 +37,7 @@ app.use('/users', usersRouter);
 app.use('/contents', contentsRouter);
 app.use('/test', testRouter);
 app.use('/images', imageRouter);
+app.use('/bookmarks', bookmarkRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: '연결되었습니다.' });

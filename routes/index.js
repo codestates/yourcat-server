@@ -3,4 +3,5 @@ module.exports = {
   contentsRouter: require('./contents'),
   imageRouter: require('./images'),
   testRouter: require('./test'),
+  bookmarkRouter: require('./bookmark'),
 };

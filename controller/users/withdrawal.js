@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
   try {
     const { _id: userId } = req.user;
     getImageName('user', userId).then(imageName => {
-      req.image = { where: 'user', imageName };
+      req.image = { where: 'user', imageName: imageName || undefined };
     });
 
     await User.deleteOne({ _id: userId });

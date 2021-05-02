@@ -9,5 +9,6 @@ module.exports = {
     'consistent-return': 0, // if/else안쓰고 return res.json() 식으로 쓰게함.
     'no-else-return': 0,
     'no-return-assign': 0,
+    'no-unneeded-ternary': 0,
   },
 };

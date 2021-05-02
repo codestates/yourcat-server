@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     const userIdFromContent = contentInfo.userId;
 
     // 2. 이 _id와 contentId의 글의 userId가 일치하는지 확인하고 수정한다.
-    if (String(userIdFromToken) === String(userIdFromContent)) {
+    if (userIdFromToken.equals(userIdFromContent)) {
       await Content.updateOne(
         { _id: contentId },
         { $set: req.body },
