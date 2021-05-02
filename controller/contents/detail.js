@@ -20,14 +20,14 @@ module.exports = async (req, res) => {
       category,
       description,
       image: contentImage,
-      userId: {
-        _id: userId,
-        nickname: userName,
-        catInfo: { image: userImage },
-      },
+      userId: { _id: userId, nickname: userName },
       createdAt,
       updatedAt,
     } = content;
+
+    const userImage = content.userId.catInfo
+      ? content.userId.catInfo.image
+      : undefined;
 
     const comment = content.comment.map(el => {
       return {

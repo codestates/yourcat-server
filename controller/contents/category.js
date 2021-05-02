@@ -33,14 +33,14 @@ module.exports = async (req, res) => {
           description,
           like,
           image: contentImage,
-          userId: {
-            _id: userId,
-            nickname: userName,
-            catInfo: { image: userImage },
-          },
+          userId: { _id: userId, nickname: userName },
           createdAt,
           updatedAt,
         } = el;
+
+        const userImage = el.userId.catInfo
+          ? el.userId.catInfo.image
+          : undefined;
 
         const data = {
           contentId,
@@ -57,6 +57,7 @@ module.exports = async (req, res) => {
           createdAt,
           updatedAt,
         };
+
         return data;
       });
 

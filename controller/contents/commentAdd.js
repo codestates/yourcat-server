@@ -37,19 +37,3 @@ module.exports = async (req, res) => {
       .json({ message: '서버문제로 댓글 작성에 실패했습니다.', err });
   }
 };
-
-/* response 
-{
-  "message": "댓글이 작성되었습니다.",
-  "comment": [
-      {
-          "_id": "608aa3f08ba2f7397f9a0d43",
-          "userId": {
-              "_id": "6087d2dd26113d588ebfa2e7",
-              "nickname": "순기",
-              "bookmark": []
-          },
-          "description": "댓글이다임마"
-      }
-  ]
-} */
