@@ -17,18 +17,49 @@ module.exports = async (req, res) => {
       const limit = req.body.limit || 20;
       const skip = req.body.skip || 0;
 
-      const contentsList = await Content.find({ category })
+      const contents = await Content.find({ category })
         .populate('userId')
         .sort('-createdAt')
         .skip(skip)
         .limit(limit)
         .lean();
 
-      // 3. 글의 PK값인 _id를 contentID로 수청해서 보내준다.
-      contentsList.forEach(content => {
-        content.contentId = content._id;
-        delete content._id;
+      // 3. 데이터 정리
+
+      const contentsList = contents.map(el => {
+        const {
+          _id: contentId,
+          title,
+          description,
+          like,
+          image: contentImage,
+          userId: {
+            _id: userId,
+            nickname: userName,
+            catInfo: { image: userImage },
+          },
+          createdAt,
+          updatedAt,
+        } = el;
+
+        const data = {
+          contentId,
+          title,
+          category: el.category,
+          description,
+          like,
+          contentImage,
+          user: {
+            userId,
+            userName,
+            userImage,
+          },
+          createdAt,
+          updatedAt,
+        };
+        return data;
       });
+
       // 4. 더이상 불러올글이 없을때 더보기버튼을 없애기 위해서, 글목록의 길이도 res에 담아 보내준다.
       const contentsLength = contentsList.length;
       res.status(200).json({

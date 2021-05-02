@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({ message: '게시글을 찾을 수 없습니다.' });
     }
     const { comment } = content;
+    console.log(comment);
     const targetComment = comment.find(el => el._id.equals(commentId));
 
     if (!targetComment) {
