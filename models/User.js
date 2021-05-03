@@ -33,7 +33,11 @@ const userSchema = new mongoose.Schema(
       name: { type: String, trim: true },
       age: { type: Number, trim: true },
       gender: { type: String, trim: true },
-      image: { type: String },
+      image: {
+        type: String,
+        default:
+          'https://testyourcat.s3.ap-northeast-2.amazonaws.com/images/1620054671840.png',
+      },
     },
   },
   { timestamps: true },
