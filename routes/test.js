@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Content = require('../models/Content');
-
+const authCheck = require('../controller/users/authCheck');
 // * POST /test/createUser
 router.post('/createUser', async (req, res) => {
   const { email, password, nickname } = req.body;
@@ -76,5 +76,7 @@ router.get('/or', async (req, res) => {
     .lean();
   res.json({ user });
 });
+
+router.get('/authcheck', authCheck);
 
 module.exports = router;
