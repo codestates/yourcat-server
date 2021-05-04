@@ -8,7 +8,6 @@ const app = express();
 const {
   usersRouter,
   contentsRouter,
-  testRouter,
   imageRouter,
   bookmarkRouter,
 } = require('./routes');
@@ -35,7 +34,6 @@ app.use(
 app.use(cookieParser());
 app.use('/users', usersRouter);
 app.use('/contents', contentsRouter);
-app.use('/test', testRouter);
 app.use('/images', imageRouter);
 app.use('/bookmarks', bookmarkRouter);
 

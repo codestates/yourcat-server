@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// TODO:minlength, maxlength 같은 옵션은 나중에. 테스트 번거로우니까!
 const userSchema = new mongoose.Schema(
   {
     email: {
@@ -35,8 +34,7 @@ const userSchema = new mongoose.Schema(
       gender: { type: String, trim: true },
       image: {
         type: String,
-        default:
-          'https://testyourcat.s3.ap-northeast-2.amazonaws.com/images/1620054671840.png',
+        default: process.env.DEFAULT_IMAGE,
       },
     },
   },

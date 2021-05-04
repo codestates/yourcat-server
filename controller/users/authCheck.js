@@ -21,8 +21,6 @@ module.exports = async (req, res) => {
     const accessTokenData = decode(accessToken);
     const refreshToken = req.headers.cookie.split('=')[1];
     const refreshTokenData = decode(refreshToken);
-    console.log('exp:::', accessTokenData.exp);
-    console.log('curTime:::', currentTime);
 
     // accessToken이 만료된경우 --> refreshToken도 만료됐는지 확인한다.
     if (currentTime > accessTokenData.exp) {

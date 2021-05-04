@@ -11,9 +11,6 @@ module.exports = async (req, res) => {
       $push: { comment: { userId, description } },
     });
 
-    // content의 userId 말고, 배열안의 userId만 populate하고싶으면, 중첩populate를 사용하면 된다.
-    // 상위 path에는 배열이들어가는 key를, 하위 path에 userId를 넣으면된다.
-    // select 옵션으로 원하는 값만 쿼리할 수 있다.
     const content = await Content.findById(contentId).populate({
       path: 'comment',
       populate: { path: 'userId', select: '_id nickname bookmark' },
