@@ -1,7 +1,6 @@
 const validator = require('validator');
 const User = require('../../models/User');
 
-// TODO: bcrypt로 비밀번호 암호화는 basic다하고
 module.exports = async (req, res) => {
   try {
     const { email, password, nickname, catInfo } = req.body;

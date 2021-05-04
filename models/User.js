@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// TODO:minlength, maxlength 같은 옵션은 나중에. 테스트 번거로우니까!
 const userSchema = new mongoose.Schema(
   {
     email: {

@@ -1,9 +1,5 @@
 const User = require('../../models/User');
 
-// body에는 nickname, password, catInfo가 올 수 있다.
-// 수정페이지에서 이값들이 비어있으면 어떻게할까~
-// 일단 수정페이지의 패스워드빼고는 다 채워진채로 렌더되는 방식으로 고고
-// 패스워드가 비어있으면 패스워드는 빼고 업데이트
 module.exports = async (req, res) => {
   try {
     const { _id } = req.user;
