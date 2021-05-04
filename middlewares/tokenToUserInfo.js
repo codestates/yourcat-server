@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
   try {
     const token = authorization.split(' ')[1];
     const { userId } = decode(token);
-    const userInfo = await user.findOne({ _id: userId }).lean();
+    const userInfo = await user.findById(userId).lean();
     if (!userInfo) {
       res.status(401).json({ message: '유효하지않은 토큰입니다.' });
     } else {
@@ -26,7 +26,6 @@ module.exports = async (req, res, next) => {
       next();
     }
   } catch (err) {
-    console.log('userinfo error', err);
     res
       .status(500)
       .json({ message: '서버문제로 유저정보를 불러오는데 실패했습니다.' });

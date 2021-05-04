@@ -1,9 +1,6 @@
 const Content = require('../../models/Content');
 
 module.exports = async (req, res) => {
-  // FIXME:클라이언트에서 image가 빈값으로 글작성요청을하면,
-  // image url은 ''인지? undefined인지?
-  // 이거에 따라서 분기해서 컨텐츠에 담아주자.
   try {
     const { title, category, description, image } = req.body;
     const { _id: userId } = req.user;

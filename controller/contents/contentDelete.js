@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
     if (userIdFromToken.equals(userIdFromContent)) {
       // 2.1 S3의 이미지도 삭제시키기위해 imageName을 next로 넘겨준다.
       getImageName('content', contentId).then(imageName => {
-        req.image = { where: 'content', imageName: imageName || undefined };
+        req.image = { model: 'content', imageName };
       });
       // 2.2 DB에서 삭제하고 next
       await Content.deleteOne({ _id: contentId });
