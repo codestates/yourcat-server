@@ -18,7 +18,6 @@ module.exports = async (req, res) => {
         .status(400)
         .json({ message: '작성하신 댓글을 찾을 수 없습니다.' });
     }
-    // _id값을 비교할때는 equals메소드를 사용한다.
     const isAuth = targetComment.userId.equals(userId);
 
     if (!isAuth) {
@@ -27,9 +26,6 @@ module.exports = async (req, res) => {
         .json({ message: '댓글 작성자만 댓글을 삭제할 수 있습니다.' });
     }
 
-    // { $pull: { 조건1, 조건2, ... } }
-    // 특정값을 갖는 배열요소를 빼고싶다면
-    // $pull: {필드값: {특정값}}
     await content.updateOne({
       $pull: { comment: { _id: commentId } },
     });
