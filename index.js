@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.DEFAULT_URL,
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
   }),
@@ -41,5 +41,6 @@ app.get('/', (req, res) => {
   res.json({ message: '연결되었습니다.' });
 });
 
-const { PORT } = process.env;
-app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
+app.listen(process.env.PORT, () =>
+  console.log(`Server listening on ${process.env.PORT}`),
+);
