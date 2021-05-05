@@ -13,6 +13,8 @@ router.post('/login', controller.login);
 router.post('/logout', tokenToUserInfo, controller.logout);
 // * GET /users/userinfo
 router.get('/userinfo', tokenToUserInfo, controller.userInfo);
+// * POST /users/nicknameCheck
+router.post('/nicknamecheck', tokenToUserInfo, controller.nicknameCheck);
 // * PATCH /users/useredit
 router.patch('/useredit', tokenToUserInfo, controller.userEdit);
 // * DELETE /users/withdrawal
