@@ -10,5 +10,6 @@ module.exports = {
     'no-else-return': 0,
     'no-return-assign': 0,
     'no-unneeded-ternary': 0,
+    'array-callback-return': 0,
   },
 };
