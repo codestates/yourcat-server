@@ -18,9 +18,12 @@ module.exports = async (req, res) => {
     } else {
       res
         .status(401)
-        .json({ meesage: '이미 존재하는 닉네임입니다.', isCheck: false });
+        .json({ message: '이미 존재하는 닉네임입니다.', isCheck: false });
     }
   } catch (err) {
-    res.status(500).json({ message: '서버문제로 닉네임체크에 실패했습니다.' });
+    res.status(500).json({
+      message: '서버문제로 닉네임체크에 실패했습니다.',
+      isCheck: false,
+    });
   }
 };
