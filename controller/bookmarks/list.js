@@ -4,7 +4,6 @@ module.exports = async (req, res) => {
   try {
     const { _id } = req.user;
 
-    // 3연속 populate!! 3연파!
     const userInfo = await User.findById(_id)
       .select('-_id bookmark')
       .populate({
@@ -14,7 +13,7 @@ module.exports = async (req, res) => {
           // 2. 배열안의 contentId를 참조하여 content정보를 불러온다.
           path: 'contentId',
           select: 'category title image userId createdAt',
-          // 3. 불러온 content정보 중 userId를 참조하여 user(글쓴이)정보 중 nickname을 불러온다.
+          // 3. 불러온 content정보 중 userId를 참조하여 user(글쓴이)정보 중 nickname,catInfo를 불러온다.
           populate: { path: 'userId', select: 'nickname catInfo' },
         },
       })
@@ -23,28 +22,30 @@ module.exports = async (req, res) => {
       res.status(400).json({ message: '유저정보를 찾을 수 없습니다.' });
     } else {
       const bookmark = userInfo.bookmark.map(data => {
-        const {
-          contentId: {
-            _id: contentId,
+        if (data.contentId) {
+          const {
+            contentId: {
+              _id: contentId,
+              title,
+              category,
+              image: contentImage,
+              userId: {
+                catInfo: { image: userImage },
+                _id: userId,
+                nickname: userName,
+              },
+            },
+          } = data;
+          return {
+            contentId,
             title,
             category,
-            image: contentImage,
-            userId: {
-              catInfo: { image: userImage },
-              _id: userId,
-              nickname: userName,
-            },
-          },
-        } = data;
-        return {
-          contentId,
-          title,
-          category,
-          contentImage,
-          userImage,
-          userId,
-          userName,
-        };
+            contentImage,
+            userImage,
+            userId,
+            userName,
+          };
+        }
       });
       bookmark.reverse();
       res
