@@ -6,4 +6,5 @@ module.exports = {
   userEdit: require('./userEdit'),
   withdrawal: require('./withdrawal'),
   authCheck: require('./authCheck'),
+  nicknameCheck: require('./nicknameCheck'),
 };
