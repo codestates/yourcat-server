@@ -28,8 +28,8 @@ router.patch(
   tokenToUserInfo,
   controller.commentEdit,
 );
-// * DELETE contents/deletecomment/:contentId
-router.delete(
+// * PATCH contents/deletecomment/:contentId
+router.patch(
   '/deletecomment/:contentId',
   tokenToUserInfo,
   controller.commentDelete,
