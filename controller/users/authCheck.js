@@ -19,7 +19,9 @@ module.exports = async (req, res) => {
     const currentTime = Date.now() / 1000;
     const accessToken = authorization.split(' ')[1];
     const accessTokenData = decode(accessToken);
-    const refreshToken = req.headers.cookie.split('=')[1];
+    const refreshToken = req.headers.cookie
+      .split('refreshToken=')[1]
+      .split(';')[0];
     const refreshTokenData = decode(refreshToken);
 
     // accessToken이 만료된경우 --> refreshToken도 만료됐는지 확인한다.

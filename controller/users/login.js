@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
   else if (userInfo.password !== password) {
     res.status(400).json({ message: '잘못된 비밀번호 입니다.' });
   }
-  // 2. _id를 토근 생성에 사용한다. TODO: 모든정보를 담을지 id만담을지 생각해보기. 일단 id만.
+  // 2. _id를 토근 생성에 사용한다.
   else {
     const accessToken = jwt.sign(
       { userId: userInfo.id },
